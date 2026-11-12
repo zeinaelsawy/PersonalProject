@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <title>Personal Project</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="Personal Project.css">
+    </head>
+    <body style="background-color:rgb(5, 5, 5);">
+        <script>
+            function setFormMessage(formElement, type, message) {
+            const messageElement = formElement.querySelector(".form__message");
+            messageElement.textContent = message;
+            messageElement.classList.remove("form__message--success", "form__message--error");
+            messageElement.classList.add(`form__message--${type}`);
+            }
+            function setInputError(inputElement, message) {
+            inputElement.classList.add("form__input--error");
+            inputElement.parentElement.querySelector(".form__input-error-message").textContent = message;
+            }
+            function clearInputError(inputElement) {
+            inputElement.classList.remove("form__input--error");
+            inputElement.parentElement.querySelector(".form__input-error-message").textContent = "";
+            }
+            document.addEventListener("DOMContentLoaded", () => {
+            const loginForm = document.querySelector("#login");
+            const createAccountForm = document.querySelector("#createAccount");
+            document.querySelector("#linkCreateAccount").addEventListener("click", e => {
+            e.preventDefault()
+            loginForm.classList.add("form--hidden");
+            createAccountForm.classList.remove("form--hidden");
+            });
+            document.querySelector("#linkLogin").addEventListener("click", e => {
+            e.preventDefault();
+            loginForm.classList.remove("form--hidden");
+            createAccountForm.classList.add("form--hidden");
+            });
+            loginForm.addEventListener("submit", e => {
+            e.preventDefault();
+            // Perform your AJAX/Fetch login
+            setFormMessage(loginForm, "error", "This login is a demo - there are no accounts to sign in to");
+            });
+            document.querySelectorAll(".form__input").forEach(inputElement => {
+            inputElement.addEventListener("blur", e => {
+            if (e.target.id === "signupUsername" && e.target.value.length > 0 && e.target.value.length < 10) {
+            setInputError(inputElement, "Username must be at least 10 characters in length"); 
+            }
+            });
+            inputElement.addEventListener("input", e => {
+            clearInputError(inputElement);
+            });
+            });
+            });
+            function myFunction() {
+            var dots = document.getElementById("dots");
+            var moreText = document.getElementById("more");
+            var btnText = document.getElementById("myBtn");
+            if (dots.style.display === "none") {
+            dots.style.display = "inline";
+            btnText.innerHTML = "Read more";
+            moreText.style.display = "none";
+            } else {
+            dots.style.display = "none";
+            btnText.innerHTML = "Read less";
+            moreText.style.display = "inline";
+            }
+            }
+            </script>
+    <div class="all">
+        <div class="header">
+         <a id="logo" class="header-btn" href="#">❀Songanali❀</a>
+         <a id="home" class="header-btn" href="#">Home</a>
+         <a class="header-btn" href="#">About</a>
+            <div class="dropdown">
+            <a id="dropbtn" href="#">Context</a>
+                    <div class="dropdown-content">
+                      <a id="sections" href="#">Context</a>
+                      <a href="#Artist">Artist</a>
+                      <a href="#Lyrics">Lyrics</a>
+                      <a href="#Analysis">Analysis</a>
+                    </div>
+            </div>
+        </div>
+        <div class="topimg">
+         <br>
+         <center>
+         <h1 id="title">♡ The deeper meaning behind music ♡</h1>
+         <h3>-The largest collection of song lyrics and musical expertise in the world-</h3>
+        <div class="container">
+            <form class="form" id="login">
+             <h1 class="form__title">Login</h1>
+             <p class="form__text" style="font-size:0.85rem;color:#bbbbbb;">Demo only &ndash; nothing you type here is saved or sent anywhere.</p>
+             <div class="form__message form__message--error"></div>
+             <div class="form__input-group">
+             <input type="text" class="form__input" autofocus placeholder="Username or Email">
+             <div class="form__input-error-message"></div>
+             </div>
+             <div class="form__input-group">
+             <input type="password" class="form__input" autofocus placeholder="Password">
+             <div class="form__input-error-message"></div>
+             </div>
+             <button class="form__button" type="submit">Continue</button>
+             <p class="form__text">
+             <a class="form__link" href="./" id="linkCreateAccount">Don't have an account? Create account</a>
+             </p>
+            </form>
+            <form class="form form--hidden" id="createAccount">
+             <h1 class="form__title">Create Account</h1>
+             <p class="form__text" style="font-size:0.85rem;color:#bbbbbb;">Demo only &ndash; nothing you type here is saved or sent anywhere.</p>
+             <div class="form__message form__message--error"></div>
+             <div class="form__input-group">
+             <input type="text" id="signupUsername" class="form__input" autofocus placeholder="Username">
+             <div class="form__input-error-message"></div>
+             </div>
+             <div class="form__input-group">
+             <input type="text" class="form__input" autofocus placeholder="Email Address">
+             <div class="form__input-error-message"></div>
+             </div>
+             <div class="form__input-group">
+             <input type="password" class="form__input" autofocus placeholder="Password">
+             <div class="form__input-error-message"></div>
+             </div>
+             <div class="form__input-group">
+             <input type="password" class="form__input" autofocus placeholder="Confirm password">
+             <div class="form__input-error-message"></div>
+             </div>
+             <button class="form__button" type="submit" onclick="openPopup()">Continue</button>
+             <div class= "popup" id="popup" >
+                 <h2>Thank you!</h2>
+                 <p>Your details have been successfully submitted</p>
+                 <button type="button" onclick="closePopup()">Ok</button>
+             </div>
+             <script>
+                 let popup = document.getElementById("popup");
+            function openPopup(){
+                popup.classList.add("open-popup")
+            }
+            function closePopup(){
+                popup.classList.remove("open-popup")
+            }
+             </script>
+             <p class="form__text">
+             <a class="form__link" href="./" id="linkLogin">Already have an account? Sign in</a>
+             
+             </p>
+            </form>
+        </div>
+        </div>
+        <div class="topsec">
+         <h1 id="intro">The Personal Project Proposal</h1>
+            <div class="margin">
+             <p id="itr">My personal project will focus on analysing the implict meaning behind lyrics. I have chosen the song 'After the Storm' for this project because it deeply resonates with me.</p>
+                <div class="row">
+                    <div class="column">
+                      <img id= "musicimg" src="music.jpg" style="width:100%">
+                    </div>
+                    <div class="column">
+                        <p id="quote">“Music is the only thing in the world that can block out madness, and can be consumed in the sadness, for it helps the soul survive even if only for a short time”</p>
+                        <p id="qa"> — Timothy Long</p>
+                    </div>
+                </div>
+            </div>  
+        </div>
+        
+        <div class="thesections">
+            <div class="margin2">
+                <div id="Artist">
+                 <h1 id="p2">  Kali  ♡  Uchis  </h1>
+                    <div class="row2">
+                        <div class="column2">
+                         <img id="kaliuchis" src="kaliuchis.webp" width="50%">
+                        </div>
+                        <div class="column2">
+                         <p class="sp2">Colombian singer-songwriter, record producer, and music video director, Kali Uchis, was born on July 17, 1994. She composes and produces the majority of her own music. She was born to immigrant parents in Virginia. Her family returned to Colombia when she was four or five years old. She spent several years in a little hamlet near Pereira, in a house she recalls being overrun with birds, which inspired her to create music.</p>
+                        </div>
+                    </div>
+                </div>   
+            </div>
+            <div id="Lyrics">
+                <div class="row3">
+                    <div class="column2">
+                     <h1 id="p3"> ❀ After the Storm ❀ </h1>
+                    </div>
+                    <br>
+                </div>
+                <p class="sp3" style="text-align:center;">
+                    The lyrics and the recording belong to the artists, so they are not reproduced here.
+                    <br>
+                    <br>
+                    <a class="form__link" href="https://www.youtube.com/results?search_query=Kali+Uchis+After+the+Storm" target="_blank" rel="noopener">&#9658; Listen to the song on YouTube</a>
+                    <br>
+                    <a class="form__link" href="https://genius.com/search?q=Kali%20Uchis%20After%20the%20Storm" target="_blank" rel="noopener">&#9998; Read the lyrics on Genius</a>
+                </p>
+            </div>
+            <div id="Analysis">
+                <hr>
+                <center>
+                <h1 id="p1"> ~ The Analysis ~ </h1>
+                <IMG SRC="original.gif" width="70%">.
+                <p class="sp1">This song is about all of the people in the artist's life who she can't be around to support them through their problems. They also can't be around her all of the time to encourage her through anything she's going through.  Because you don't always have somebody else to tell you what you need to hear, you sometimes need to tell yourself everything you need to hear. One of the first lines is a play on the aphorism<span id="dots">...</span>
+                <span id="more">
+                “Look both ways before you cross the street.” In this context, Bootsy alludes to being cautious when crossing one’s mind. Many of us grow up with someone continuously picking on us. People don't consider how much the small things you say to each other can have an impact on you. 
+                <br>
+                <br>
+                The importance of self-reliance is the major message of this song. Self-sufficiency is crucial. You're nothing without everyone around you if you don't have self-reliance, self-awareness, and the ability to pick yourself up by yourself. You must rely solely on yourself. You must be dependent on the understanding that you are the only thing you have in the world. You don't have to believe you've lost just because everything around you suggests you have. 
+                <br>
+                <br>
+                "The sun'll come out," she sings, emphasizing that the struggle is just temporary. She used wordplay to represent a variety of elements of the song. Showers in April bring flowers in May, for example. Going through the darkness with rain pouring down on you, and then all of a sudden, the clouds part, and the sun shines down on you in the most befitting manner, and then a rainbow appears. The umbrella is a metaphor for Kali's support in the second verse, as it protects Tyler. The use of an umbrella also corresponds to the song title, since an umbrella would be used to protect you from the metaphorical storm. The bridge is about working hard, fully committing to whatever you want to do, and going for it. It's difficult to sympathize with the reality that things can be difficult. Everyone wants to be successful right away. Overnight success is rare, and it isn't always sustainable. 
+                <br>
+                <br>
+                </span></p>
+                <button onclick="myFunction()" id="myBtn">Read more</button>
+                </center>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+    </body>
+</html>
